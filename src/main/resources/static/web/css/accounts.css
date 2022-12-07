@@ -1,0 +1,107 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #E5E7EB;
+    min-height: 100vh;
+}
+
+.accounts-container{
+
+    width: 100%;
+    min-height: 50vh;
+    background-image: url('../assets/architecture-2256489_1920.jpg');
+    background-size: cover;
+}
+.bg-bw{
+    z-index: -1!important;
+}
+
+.see-trans{
+    border-bottom-left-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+}
+.see-trans:hover{
+    background-color: #193686;
+}
+
+.accountt:hover{
+    background-color: #193686!important;
+}
+.account{
+    width: 400px;
+    height: 250px;
+    background-image: url(../assets/black-370118.png);
+    background-size: cover;
+    border-radius: 1rem;
+  
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.342);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35);
+}
+
+/* From uiverse.io by @adamgiebl */
+.cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, #1D4ED8 0%, #193686 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #ffffff57;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+   }
+   
+   .cssbuttons-io-button svg {
+    margin-right: 6px;
+   }
+   
+   .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em #1e14a798;
+   }
+   
+   .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #1416a798;
+   }
+
+   /** addaccount btn**********/
+
+   .loan-video{
+    height: 50vh;
+    width: 80%;
+   }
+
+   
+
+   .Mortgage{
+    background-image: url(../assets/hipotecario.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.Personal{
+    background-image: url(../assets/personal.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.Automotive{
+    background-image: url(../assets/automotriz.jpg);
+    background-size: cover;
+    background-position: center;
+}

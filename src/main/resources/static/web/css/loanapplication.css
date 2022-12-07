@@ -1,0 +1,93 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #E5E7EB;
+    
+}
+
+main{
+    min-height: 80vh;
+    background-image: url(../assets/church-5245585_1920.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.loan-box{
+    min-height: 70vh;
+    min-width: 50%;
+    border-radius: 1rem;
+    box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+-webkit-box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+-moz-box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+    
+
+}
+
+.loan{
+    width: 400px;
+    height: 500px;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: .7s;
+    box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+    -webkit-box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+    -moz-box-shadow: -1px 0px 30px -5px rgba(0,0,0,0.55);
+        
+}
+
+.loan:hover{
+    transform: rotateY(360deg);
+}
+
+.loan-title{
+    background-color: rgba(0, 0, 0, 0.842);
+}
+.loan-title1{
+    background-color: rgba(21, 207, 77, 0.685);
+}
+.loan-title2{
+    background-color: rgba(21, 201, 207, 0.685);
+}
+.loan-title3{
+    background-color: rgba(255, 102, 0, 0.685);
+}
+.Mortgage{
+    background-image: url(../assets/hipotecario.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.Personal{
+    background-image: url(../assets/personal.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.Automotive{
+    background-image: url(../assets/automotriz.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* .request{
+    display: flex;
+    justify-content: center;
+} */
+
+@media (max-width: 425px) {
+    .loan {
+        width: 310px;
+        height: 400px;
+    }
+}
