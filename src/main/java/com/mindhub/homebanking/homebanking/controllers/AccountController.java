@@ -2,22 +2,14 @@ package com.mindhub.homebanking.homebanking.controllers;
 
 
 import com.mindhub.homebanking.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.homebanking.dtos.TransactionDTO;
 import com.mindhub.homebanking.homebanking.models.Account;
-import com.mindhub.homebanking.homebanking.repositories.AccountRepository;
-
-import com.mindhub.homebanking.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.homebanking.repositories.TransactionsRepository;
 import com.mindhub.homebanking.homebanking.services.AccountServices;
 import com.mindhub.homebanking.homebanking.services.ClientServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDateTime;
@@ -36,7 +28,7 @@ public class AccountController {
     @Autowired
     private ClientServices clientServices;
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
 
     public List<AccountDTO> getAccounts() {
 
@@ -44,7 +36,13 @@ public class AccountController {
 
     };
 
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/active/accounts")
+    public List<AccountDTO> getActiveAccounts(){
+        return accountServices.getActiveAccounts();
+    }
+
+
+    @GetMapping("/accounts/{id}")
 
     public AccountDTO getTransactions(@PathVariable Long id){
 
@@ -66,6 +64,8 @@ public class AccountController {
 
         int random = (int)(Math.random()*100000000);
         Integer random1 = random;
+
+
         Account account1 = new Account(("VIN" + random1.toString()) , LocalDateTime.now(),0);
         clientServices.findByEmail(authentication.getName()).addAccount(account1);
         accountServices.save(account1);
@@ -74,5 +74,31 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
+
+
+        @DeleteMapping("/accounts/delete")
+        public ResponseEntity<Object> deleteAccount (@RequestParam String account_number){
+
+         accountServices.delete(account_number);
+         return new ResponseEntity<>("Cuenta Eliminada" , HttpStatus.ACCEPTED);
+
+
+        }
+
+    @PutMapping("/accounts/accountActivation")
+    public ResponseEntity<Object> accountActivation (@RequestParam String account_number, boolean active){
+
+       Account account = accountServices.findByNumber(account_number);
+       account.setActive(active);
+       accountServices.save(account);
+
+
+       return new ResponseEntity<>( active ? "Account enabled" : "Account disabled" , HttpStatus.ACCEPTED);
+
+
+    }
+
+
+
 
 }

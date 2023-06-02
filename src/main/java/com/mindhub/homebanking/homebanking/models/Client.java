@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 @Entity
 public class Client {
@@ -90,6 +91,10 @@ public class Client {
 
     public Set<Account> getAccounts() {
         return accounts;
+    }
+
+    public Set<Account> getActiveAccounts() {
+        return accounts.stream().filter(account -> account.isActive()).collect(Collectors.toSet());
     }
 
     public Set<ClientLoan> getClientLoans() {

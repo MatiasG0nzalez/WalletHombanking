@@ -53,26 +53,26 @@ public class TransactionController {
         Account destinationAccount = accountServices.findByNumber(destinationAccountNumber);
 
 
-        if (amount.isNaN() || amount == 0 || amount == null){
+        if (amount.isNaN() || amount <= 0 || amount == null){
 
-            return new ResponseEntity<>("Missing information: amount", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The amount entered is not valid", HttpStatus.FORBIDDEN);
 
         }
         System.out.println(amount);
 
         if (description.isEmpty()){
 
-            return new ResponseEntity<>("Missing information: description", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please, enter a description", HttpStatus.FORBIDDEN);
         }
 
         if (originAccountNumber.isEmpty()){
 
-            return new ResponseEntity<>("Missing information: Origin Account Number", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Source account not selected or invalid", HttpStatus.FORBIDDEN);
         }
 
         if (destinationAccountNumber.isEmpty()){
 
-            return new ResponseEntity<>("Missing information: Destination Account Number", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Destination account not chosen or invalid", HttpStatus.FORBIDDEN);
         }
 
         if (originAccountNumber.equals(destinationAccountNumber)){

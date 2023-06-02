@@ -12,6 +12,7 @@
 
 body{
     transition: 1s;
+    padding: 0!important;
 }
 
 main{

@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface AccountServices {
     public List<AccountDTO> getAccounts();
+    public  List<AccountDTO> getActiveAccounts();
 
     public AccountDTO getTransactions(Long id);
 
-    void save(Account account1);
+    public void save(Account account1);
 
-
-    Account findByNumber(String originAccountNumber);
+    public Account findById(long id);
+    public void delete(String originAccountNumber);
+    public Account findByNumber(String originAccountNumber);
 }

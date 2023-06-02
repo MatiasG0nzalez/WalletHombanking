@@ -29,6 +29,11 @@ public class AccountServiceImp implements AccountServices {
     }
 
     @Override
+    public  List<AccountDTO> getActiveAccounts(){
+        return accountRepository.findAll().stream().filter( account -> account.isActive()).map( account -> new AccountDTO(account)).collect(Collectors.toList());
+    }
+
+    @Override
     public AccountDTO getTransactions(Long id) {
 
         return accountRepository.findById(id).map( account -> new AccountDTO(account)).orElse(null);
@@ -42,6 +47,15 @@ public class AccountServiceImp implements AccountServices {
     @Override
     public Account findByNumber(String originAccountNumber) {
         return accountRepository.findByNumber(originAccountNumber);
+    }
+
+    @Override
+    public void delete(String originAccountNumber) {
+        accountRepository.delete(accountRepository.findByNumber(originAccountNumber));
+    }
+    @Override
+    public Account findById(long id){
+        return accountRepository.findById(id).orElse(null);
     }
 
 

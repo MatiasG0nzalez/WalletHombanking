@@ -17,7 +17,7 @@ public class Account {
     private LocalDateTime creationDate;
     private double balance;
 
-
+    private boolean active;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
@@ -35,9 +35,8 @@ public class Account {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.active = true;
     }
-
-
 
 
 
@@ -90,7 +89,25 @@ public class Account {
 
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
 
-
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", creationDate=" + creationDate +
+                ", balance=" + balance +
+                ", active=" + active +
+                ", client=" + client +
+                ", transactions=" + transactions +
+                '}';
+    }
 }

@@ -1,11 +1,16 @@
 package com.mindhub.homebanking.homebanking.dtos;
 
+import com.mindhub.homebanking.homebanking.models.Account;
 import com.mindhub.homebanking.homebanking.models.Client;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ClientDTO {
+
+
+
+public class ClientCurrentDTO {
+
 
     private long id;
     private String firstName;
@@ -19,11 +24,10 @@ public class ClientDTO {
 
     private Set<CardDTO> cards;
 
-    private boolean active;
-    public ClientDTO() {
+    public ClientCurrentDTO() {
     }
 
-    public ClientDTO(Client client ) {
+    public ClientCurrentDTO(Client client ) {
 
         this.id = client.getId();
 
@@ -35,11 +39,11 @@ public class ClientDTO {
 
         this.password = client.getPassword();
 
-        this.accounts = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+        this.accounts = client.getActiveAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
 
-        this.loans = client.getClientLoans().stream().map(loan -> new ClientLoanDTO(loan)).collect(Collectors.toSet());
+        this.loans = client.getClientLoans().stream().map(ClientLoanDTO::new).collect(Collectors.toSet());
 
-        this.cards = client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());
+        this.cards = client.getCards().stream().map(CardDTO::new).collect(Collectors.toSet());
 
     }
 
@@ -75,6 +79,5 @@ public class ClientDTO {
     public Set<CardDTO> getCards() {
         return cards;
     }
-
 
 }

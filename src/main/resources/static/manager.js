@@ -15,11 +15,9 @@ const app = Vue.createApp({
           editClientLastName: "",
           editClientEmail: "",
 
-
-  
-     
-  
       }
+
+      
     },
     created(){
       this.loadData(this.api) 

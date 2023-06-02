@@ -1,12 +1,10 @@
 package com.mindhub.homebanking.homebanking.controllers;
 
+import com.mindhub.homebanking.homebanking.dtos.ClientCurrentDTO;
 import com.mindhub.homebanking.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.homebanking.models.Account;
-import com.mindhub.homebanking.homebanking.models.CardColor;
-import com.mindhub.homebanking.homebanking.models.CardType;
+
 import com.mindhub.homebanking.homebanking.models.Client;
-import com.mindhub.homebanking.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.homebanking.services.AccountServices;
 import com.mindhub.homebanking.homebanking.services.ClientServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-
+import java.util.Random;
 
 
 @RestController
@@ -49,6 +46,7 @@ public class ClientController {
     public ClientDTO getClient(@PathVariable Long id){
 
         return clientServices.getClient(id);
+
     }
 
 
@@ -88,8 +86,8 @@ public class ClientController {
 
         Client client1 = new Client(firstName, lastName, email, passwordEncoder.encode(password));
 
-        int random = (int)(Math.random()*100000000);
-        Integer random1 = random;
+        Random rand = new Random();
+        Integer random1 = 10000000 + rand.nextInt(90000000);
 
         Account account1 = new Account(("VIN" + random1.toString()) , LocalDateTime.now(),0);
         client1.addAccount(account1);
@@ -106,13 +104,29 @@ public class ClientController {
 
     @GetMapping("/clients/current")
 
-    public ClientDTO getCurrentClient(Authentication authentication) {
+    public ClientCurrentDTO getCurrentClient(Authentication authentication) {
 
     return clientServices.getCurrentClient(authentication);
 
 
 
     }
+
+    @PatchMapping("/clients/edit")
+    public ResponseEntity<Object> editClient (@RequestParam String firstName, @RequestParam String lastName, @RequestParam String newEmail, @RequestParam String oldEmail ){
+
+        Client client = clientServices.findByEmail(oldEmail);
+
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(newEmail);
+
+        clientServices.save(client);
+
+        return new ResponseEntity<>("Client successfully edited" , HttpStatus.ACCEPTED);
+
+    }
+
 
 
 

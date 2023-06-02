@@ -83,11 +83,11 @@
                 <h2 class="w-full text-center text-white bg-blue-700 py-3" style="font-weight: 600;">Select yor loan
                 </h2>
 
-                <div class="flex justify-center gap-4 flex-wrap mt-4">
+                <div class="flex justify-center gap-4 flex-wrap mt-4 p-4">
                     
                     <template v-for="loan in loans" >
 
-                        <button data-modal-toggle="loan-modal" @click="loanSelector(loan)">
+                        <div  data-modal-toggle="loan-modal" @click="loanSelector(loan)" class=" hover:scale-1">
                         <div class="loan Mortgage flex flex-col justify-between" :class="loan.name">
 
                             <div>
@@ -107,7 +107,7 @@
                                 <div class="mb-4">
                                     <h2 class="text-center text-black loan-title2 text-xl py-2"
                                         style="font-weight: 600;">Payments aviable</h2>
-                                    <h2 class="text-center text-white loan-title text-xl py-3">{{loan.payments}}</h2>
+                                    <h2 class="text-center text-white loan-title text-xl py-3"> {{...loan.payments}} </h2>
                                 </div>
 
                                 
@@ -117,7 +117,7 @@
 
 
                         </div>
-                    </button>
+                    </div>
                     </template>
                     
                     
